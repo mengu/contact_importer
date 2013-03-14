@@ -11,6 +11,12 @@ Clone the repository and run the following command:::
     python setup.py install
 
 
+Usage
+-----
+
+You can view Django implementation of the library at https://github.com/mengu/django_contact_importer and TurboGears implementation at https://github.com/mengu/tg-contact-importer.
+
+
 License
 -------
 The MIT License (MIT)

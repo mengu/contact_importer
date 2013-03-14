@@ -11,7 +11,7 @@ version = "0.0.1"
 
 setup(name='contact_importer',
       version=version,
-      description="",
+      description="Import Gmail, Live and Yahoo contacts within your Python application.",
       long_description=README,
       classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       keywords='',
