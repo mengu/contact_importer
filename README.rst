@@ -6,10 +6,13 @@ Import contacts from Gmail, Yahoo and Live accounts.
 Installing
 -------------------------------
 
-Clone the repository and run the following command:::
+Clone the repository and run the following command::
 
     python setup.py install
 
+You can install via Cheeseshop as well::
+
+    pip install contact_importer
 
 Usage
 -----
