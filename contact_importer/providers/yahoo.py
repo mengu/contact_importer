@@ -16,7 +16,7 @@ import json
 REQUEST_TOKEN_URL = "https://api.login.yahoo.com/oauth/v2/get_request_token"
 REQUEST_AUTH_URL = "https://api.login.yahoo.com/oauth/v2/request_auth"
 TOKEN_URL = "https://api.login.yahoo.com/oauth/v2/get_token"
-CONTACTS_URL = "http://social.yahooapis.com/v1/user/%s/contacts"
+CONTACTS_URL = "https://social.yahooapis.com/v1/user/%s/contacts"
 
 
 class YahooContactImporter(BaseProvider):
