@@ -15,10 +15,21 @@ CONTACTS_URL = "https://apis.live.net/v5.0/me/contacts?access_token=%s&limit=100
 class LiveContactImporter(BaseProvider):
 
     def __init__(self, *args, **kwargs):
+        # Handle custom field parameter which determines which response
+        # field to look into for contact's email (valid values seem to be
+        # account, business, other, personal and preferred, with preferred
+        # being available the majority of the time)
+        if "field" in kwargs:
+            self.field = kwargs["field"]
+            del kwargs["field"]
+        else:
+            self.field = "preferred"
+
         super(LiveContactImporter, self).__init__(*args, **kwargs)
         self.auth_url = AUTH_URL
         self.token_url = TOKEN_URL
         self.perm_scope = PERM_SCOPE
+
 
     def request_authorization(self):
         auth_params = {
@@ -59,8 +70,8 @@ class LiveContactImporter(BaseProvider):
         contacts = []
         for contact in contacts_list['data']:
             emails = contact['emails']
-            if emails.get('personal'):
-                contacts.append(emails['personal'])
+            if emails.get(self.field):
+                contacts.append(emails[self.field])
         return contacts
 
 
