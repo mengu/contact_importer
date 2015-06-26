@@ -11,19 +11,19 @@ TOKEN_URL = "https://login.live.com/oauth20_token.srf"
 PERM_SCOPE = "wl.basic,wl.contacts_emails"
 CONTACTS_URL = "https://apis.live.net/v5.0/me/contacts?access_token=%s&limit=1000"
 
+VALID_FIELDS = ['account', 'business', 'other', 'personal', 'preferred']
+DEFAULT_FIELD = 'account'
 
 class LiveContactImporter(BaseProvider):
 
     def __init__(self, *args, **kwargs):
         # Handle custom field parameter which determines which response
-        # field to look into for contact's email (valid values seem to be
-        # account, business, other, personal and preferred, with preferred
-        # being available the majority of the time)
-        if "field" in kwargs:
+        # field to look into for contact's email 
+        if "field" in kwargs and kwargs["field"] in VALID_FIELDS:
             self.field = kwargs["field"]
             del kwargs["field"]
         else:
-            self.field = "preferred"
+            self.field = DEFAULT_FIELD
 
         super(LiveContactImporter, self).__init__(*args, **kwargs)
         self.auth_url = AUTH_URL
@@ -72,6 +72,9 @@ class LiveContactImporter(BaseProvider):
             emails = contact['emails']
             if emails.get(self.field):
                 contacts.append(emails[self.field])
+            # Refer to https://github.com/mengu/contact_importer/pull/2
+            elif emails.get(DEFAULT_FIELD):
+                contacts.append(emails[DEFAULT_FIELD])
         return contacts
 
 
