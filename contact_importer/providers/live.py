@@ -59,8 +59,8 @@ class LiveContactImporter(BaseProvider):
         contacts = []
         for contact in contacts_list['data']:
             emails = contact['emails']
-            if emails.get('account'):
-                contacts.append(emails['account'])
+            if emails.get('personal'):
+                contacts.append(emails['personal'])
         return contacts
 
 
