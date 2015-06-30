@@ -106,9 +106,7 @@ class YahooContactImporter(BaseProvider):
                 contact_type = field['type']
                 contact_value = field['value']
 
-                if contact_type == "name":
-                    continue
-                elif contact_type == "yahooid" and not "@" in contact_value:
+                if contact_type == "yahooid" and not "@" in contact_value:
                     contact_value += "@yahoo.com"
                     contacts_list.add(contact_value)
                 elif contact_type == "email":
